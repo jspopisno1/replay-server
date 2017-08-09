@@ -39,7 +39,15 @@ var replayModule = {
         });
 
         app.all('/api/get-project-replay-list', replayModule.middlewareEnableCORS, function (req, res) {
-            mod.wrapData(res, {});
+            var data = req.body;
+
+            var result = mod.service.listReplaysByProjectId(
+                data.projectId,
+                data.currentPage,
+                data.pageSize
+            );
+
+            mod.wrapData(res, result.data);
         });
 
         app.use('/test-ui', express.static(__dirname + '/../test-ui'));

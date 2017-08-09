@@ -21,7 +21,21 @@
         }, function (res) {
             ajax('/api/load-replay', {
                 replayId: res.data.replayId
-            })
+            });
+
+            ajax('/api/get-project-replay-list', {
+                projectId: 'lego'
+            });
+
+            ajax('/api/get-project-replay-list', {
+                projectId: 'lego',
+                currentPage: 2,
+                pageSize: 3
+            });
+
+            ajax('/api/get-project-replay-list', {
+                projectId: 'not-exist'
+            });
         });
     </script>
 </body>
