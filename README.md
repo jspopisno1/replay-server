@@ -15,3 +15,9 @@ cd MY_PROJECT
 npm install
 PORT=THE_PORT_YOU_PREFER npm start
 ```
+
+# How to quickly test the api
+
+Too sad, no tests are written at the moment (a todo to follow).
+
+However, when you started the server, you can visit `http://localhost:PORT/test-ui/index.html` and have a look at the ajax interactions.
