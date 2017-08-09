@@ -1,3 +1,4 @@
+var express = require('express');
 var bodyParser = require('body-parser');
 
 var replayModule = {
@@ -17,7 +18,15 @@ var replayModule = {
         var mod = this;
         this.service = service;
 
+        app.use('/api/*', bodyParser.json());
+
         app.all('/api/save-replay', replayModule.middlewareEnableCORS, function (req, res) {
+            var data = req.body;
+
+            console.log(req.body);
+
+            mod.service.writeReplay(data.projectId, data.replayData)
+
             mod.wrapData(res, {});
         });
 
@@ -28,6 +37,8 @@ var replayModule = {
         app.all('/api/get-project-replay-list', replayModule.middlewareEnableCORS, function (req, res) {
             mod.wrapData(res, {});
         });
+
+        app.use('/test-ui', express.static(__dirname + '/../test-ui'));
     },
 
     /**
@@ -38,7 +49,7 @@ var replayModule = {
      *      next: MiddlewareNext
      */
     middlewareEnableCORS: function (req, res, next) {
-        res.setHeader('access-control-allow-origin: *');
+        res.setHeader('access-control-allow-origin', '*');
         next();
     }
 };

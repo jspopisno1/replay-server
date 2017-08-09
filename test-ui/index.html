@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>Test UI for quickly testing the apis</title>
+</head>
+<body>
+    <script>
+        var ajax = function (url, data) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(data));
+        };
+
+        ajax('/api/save-replay', {
+            projectId: 'lego',
+            replayData: {hello: 'world'}
+        });
+    </script>
+</body>
+</html>
