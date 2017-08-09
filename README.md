@@ -1,6 +1,6 @@
 # Replay Server
 
-This project is for running a server to hold some replay data for mobx replays, which in turn provide a user-friendly way for the Dev/PM/QA to record everything in an WEBAPP and share with others, when a bug is found or a feature to show.
+This project is for running a server to hold some replay data for mobx replays, which in turn provides a user-friendly way for the Dev/PM/QA to record everything in an WEBAPP and share with others, when a bug is found or a feature to show.
 
 # Running the server
 

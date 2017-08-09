@@ -1,7 +1,9 @@
 var express = require('express');
 var app = express();
 
-require('./module/replay').init(app);
+
+var fileService = require('./lib/file-service');
+require('./module/replay').init(app, fileService);
 
 /**
  * // set from env, for instance, `PORT=4000 npm start`
