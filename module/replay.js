@@ -23,15 +23,19 @@ var replayModule = {
         app.all('/api/save-replay', replayModule.middlewareEnableCORS, function (req, res) {
             var data = req.body;
 
-            console.log(req.body);
+            var result = mod.service.writeReplay(data.projectId, data.descr, data.replayData);
 
-            mod.service.writeReplay(data.projectId, data.replayData)
-
-            mod.wrapData(res, {});
+            mod.wrapData(res, {
+                replayId: result.data.replayId
+            });
         });
 
         app.all('/api/load-replay', replayModule.middlewareEnableCORS, function (req, res) {
-            mod.wrapData(res, {});
+            var data = req.body;
+
+            var result = mod.service.readReplay(data.replayId);
+
+            mod.wrapData(res, result.data);
         });
 
         app.all('/api/get-project-replay-list', replayModule.middlewareEnableCORS, function (req, res) {

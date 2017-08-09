@@ -4,16 +4,24 @@
 </head>
 <body>
     <script>
-        var ajax = function (url, data) {
+        var ajax = function (url, data, callback) {
             var xhr = new XMLHttpRequest();
             xhr.open('POST', url);
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.send(JSON.stringify(data));
+
+            xhr.addEventListener('load', function () {
+                callback && callback(JSON.parse(xhr.responseText));
+            });
         };
 
         ajax('/api/save-replay', {
             projectId: 'lego',
-            replayData: {hello: 'world'}
+            replayData: ['fake', 'data', 'to', 'save']
+        }, function (res) {
+            ajax('/api/load-replay', {
+                replayId: res.data.replayId
+            })
         });
     </script>
 </body>
